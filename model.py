@@ -113,7 +113,7 @@ class BasicBlock(nn.Module):
             Conv3X3(in_channels=out_channels, out_channels=out_channels, stride=1, is_nonlinear=False, is_hs_resnet=is_hs_resnet, hs_s=hs_s, hs_w=hs_w)
         )
         if stride == 2 or in_channels != out_channels:
-            self.downsample = Conv1X1(in_channels=in_channels, out_channels=out_channels, stride=stride, is_nonlinear=True)
+            self.downsample = Conv1X1(in_channels=in_channels, out_channels=out_channels, stride=stride, is_nonlinear=False)
 
     def forward(self, x):
         orig = x
@@ -139,7 +139,7 @@ class Bottleneck(nn.Module):
             Conv1X1(in_channels=middle_channels, out_channels=out_channels, is_nonlinear=False)
         )
         if self.stride == 2 or in_channels != out_channels:
-            self.downsample = Conv1X1(in_channels=in_channels, out_channels=out_channels, stride=stride, is_nonlinear=True)
+            self.downsample = Conv1X1(in_channels=in_channels, out_channels=out_channels, stride=stride, is_nonlinear=False)
 
     def forward(self, x):
         orig = x
